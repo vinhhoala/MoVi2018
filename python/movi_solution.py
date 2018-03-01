@@ -49,8 +49,6 @@ def parseLineData(line, line_index):
         line_index {[type]} -- [description]
     """
     # TODO: To be completed!
-    print (str(line_index) + " - " + line)
-    # writeToFile('12' + OUTPUT_POSTFIX, line)
 
 def readInput(file_path):
     """Read the input file
@@ -74,7 +72,6 @@ def writeOutput(file_path, solution):
         solution {Object} -- A solution of the problem which need to be written in to the file
     """
     # TODO: To be completed
-    writeToFile(file_path,"Solution")
 
 def evaluate(solution):
     """Evaluate the score of the solution
@@ -90,9 +87,6 @@ def solveProblem():
     """Solve the problem
     """
     # TODO: Solve the problem
-    print("SolveProblem .... ")
-    while True:
-        print(".")
 
 # Main functions
 
