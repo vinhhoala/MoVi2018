@@ -154,15 +154,13 @@ def solveProblem():
     """Solve the problem
     """
     # TODO: Solve the problem
-    nb_remain_ride = city_map.nb_rides
     for v in range(city_map.nb_vehicle):
-        nb_ride = random_nb_ride(nb_remain_ride)
-        nb_remain_ride = nb_remain_ride - nb_ride
+        nb_ride = random_nb_ride(len(list_rides))
         output = str(nb_ride)
         for r in range(nb_ride):
             output = output + ' ' + str(list_rides[r].ride_id)
             list_rides.remove(list_rides[r])
-        writeToFile(OUTPUT_LOCATION + '/' + 'movi_'+str(int(time.time())) + '.out',output + "\n")
+        writeToFile('movi_'+str(int(time.time())) + '.out',output + "\n")
 
 
 def showInput():
