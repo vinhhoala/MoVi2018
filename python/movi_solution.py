@@ -14,7 +14,7 @@ import sys
 import signal
 import time
 import json
-from utils import *
+import random
 
 # Global constants
 OUTPUT_POSTFIX = "_movi.out"
@@ -52,6 +52,28 @@ class Ride:
         self.end_y = end_y
         self.e_start = e_start
         self.l_finish = l_finish
+
+def printHelp(appName):
+    """Print out the message if the user does not enter correct parameter
+    
+    Arguments:
+        appName {String} -- String name
+    """
+    print("Usage:")
+    print('\tpython ' + appName + ' <Input_data_file>')
+
+
+def writeToFile(file_path, content):
+    """Append a content to a file
+    
+    Arguments:
+        file_path {String} -- Path of output file
+        content {String} -- Content to be written
+    """
+
+    output = open(file_path, 'a')
+    output.write(content)
+    output.close()
 
 def signalHandler(sig, frame):
     """Print the best currently result
@@ -126,7 +148,7 @@ def evaluate(solution):
     # TODO: to evaluate the solution
 
 def random_nb_ride(nb_remain_ride):
-    return random.randint(1,nb_remain_ride)
+    return random.randint(1, nb_remain_ride)
 
 def solveProblem():
     """Solve the problem
@@ -135,9 +157,12 @@ def solveProblem():
     nb_remain_ride = city_map.nb_rides
     for v in range(city_map.nb_vehicle):
         nb_ride = random_nb_ride(nb_remain_ride)
+        nb_remain_ride = nb_remain_ride - nb_ride
+        output = str(nb_ride)
         for r in range(nb_ride):
-            
-            output = str(nb_ride) + 
+            output = output + ' ' + str(list_rides[r].ride_id)
+            list_rides.remove(list_rides[r])
+        writeToFile(OUTPUT_LOCATION + '/' + 'movi_'+str(int(time.time())) + '.out',output + "\n")
 
 
 def showInput():
